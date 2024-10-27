@@ -3,16 +3,15 @@ import 'package:forms_tutorial/model/user.dart';
 import 'package:forms_tutorial/pages/edit/edit_page.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key, required this.title});
-
-  final String title;
+  final User user;
+  const ProfilePage({super.key, required this.user});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  User userBaby = User(firstName: 'John', lastName: 'Wick', email: 'email');
+  
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
 
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: const Text('Profile'),
       ),
       body: Center(
 
@@ -31,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
             const Text(
               'User Information:',
             ),
-             Text(userBaby.toString()),
+             Text(widget.user.toString()),
           ],
         ),
       ),
@@ -39,8 +38,10 @@ class _ProfilePageState extends State<ProfilePage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => EditPage(user: userBaby)),
-          );
+            MaterialPageRoute(builder: (context) => EditPage(user: widget.user)),
+          ).then((value) {
+              setState(() {});
+          });
         },
         tooltip: 'Edit Profile Information',
         child: const Icon(Icons.edit),

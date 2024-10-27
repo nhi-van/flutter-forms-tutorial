@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forms_tutorial/model/user.dart';
 import 'package:forms_tutorial/pages/profile/profile_page.dart';
 
 void main() {
@@ -10,6 +11,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User user = User(firstName: 'John', lastName: 'Wick', email: 'email');
+    
     return MaterialApp(
       title: 'User Profile',
       theme: ThemeData(
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const ProfilePage(title: 'User Profile Page'),
+      home: ProfilePage(user: user),
     );
   }
 }

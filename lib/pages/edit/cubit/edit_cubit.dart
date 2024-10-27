@@ -9,23 +9,10 @@ class EditCubit extends Cubit<EditState> {
 
   void init() async {
   }
-  
-  // data changes 
-  void onChangeOfFirstName(){
-    //current state
-    final editState = state as EditModifyingState;
-    User user = editState.user.duplicate();
 
-    // validate data
-
-    emit(EditModifyingState(user));
-  }
-
-  void saveChanges() {
-    final editState = state as EditModifyingState;
-
-    User user = editState.user.duplicate();
-    emit(SavedState(user)); 
+  void saveChanges(User user) {
+    User userModified = user.duplicate();
+    emit(SavedState(userModified)); 
   }
 }
 

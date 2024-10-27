@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:forms_tutorial/model/user.dart';
 import 'package:forms_tutorial/pages/edit/cubit/edit_cubit.dart';
 import 'package:forms_tutorial/pages/edit/views/edit_view.dart';
+import 'package:forms_tutorial/pages/profile/profile_page.dart';
 
 class EditPage extends StatefulWidget {
   final User user;
@@ -17,7 +18,17 @@ class _EditPageState extends State<EditPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => EditCubit(),
-      child: BlocBuilder<EditCubit, EditState>(
+      child: BlocConsumer<EditCubit, EditState>(
+        listener: (context, state) {
+          if (state is SavedState) {
+            
+            // return to profile page
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfilePage(user: state.user))
+            );
+          }
+        },
         builder: (context, state) {
           switch (state) {
             case EditErrorState():
