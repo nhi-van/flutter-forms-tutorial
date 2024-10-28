@@ -12,7 +12,9 @@ final class EditInitialState extends EditState {
 final class EditErrorState extends EditState {
 }
 
-final class EditLoadingState extends EditState {  
+final class EditLoadedState extends EditState {  
+  final User user;
+  EditLoadedState(this.user);  
 }
 
 final class SavedState extends EditState {

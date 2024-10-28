@@ -11,7 +11,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    User user = User(firstName: 'John', lastName: 'Wick', email: 'email');
+    User user = User(
+      firstName: 'John', 
+      lastName: 'Wick', 
+      email: 'email', 
+      universityStatus: UniversityStatus.student
+    );
     
     return MaterialApp(
       title: 'User Profile',

@@ -1,15 +1,19 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+enum UniversityStatus { student, professor, staff}
+
 class User {
   String firstName;
   String lastName;
   String email;
+  UniversityStatus universityStatus;
 
   User({
     required this.firstName,
     required this.lastName,
     required this.email,
+    required this.universityStatus,
   });
 
   static User empty(){
@@ -17,6 +21,7 @@ class User {
       firstName: '',
       lastName: '',
       email: '',
+      universityStatus: UniversityStatus.student,
     );
   }
 
@@ -24,15 +29,25 @@ class User {
     this.firstName = firstName;
   }
 
+  setLastName(String lastName){
+    this.lastName = lastName;
+  }  
+
+  setStatus(UniversityStatus status){
+    universityStatus = status;
+  }
+
   User duplicate({
     String? firstName,
     String? lastName,
     String? email,
+    UniversityStatus? universityStatus,
   }) {
     return User(
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       email: email ?? this.email,
+      universityStatus: universityStatus  ?? this.universityStatus,
     );
   }
 
@@ -41,6 +56,7 @@ class User {
       'firstName': firstName,
       'lastName': lastName,
       'email': email,
+      'universityStatus': universityStatus.toString(),
     };
   }
 
@@ -49,6 +65,7 @@ class User {
       firstName: map['firstName'] as String,
       lastName: map['lastName'] as String,
       email: map['email'] as String,
+      universityStatus: map['universityStatus'],
     );
   }
 
@@ -58,7 +75,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(firstName: $firstName, lastName: $lastName, email: $email)';
+    return 'User(firstName: $firstName, lastName: $lastName, email: $email, university status: $universityStatus)';
   }
 
   @override
@@ -68,7 +85,8 @@ class User {
     return 
       other.firstName == firstName &&
       other.lastName == lastName &&
-      other.email == email;
+      other.email == email &&
+      other.universityStatus == universityStatus;
   }
 
 }
