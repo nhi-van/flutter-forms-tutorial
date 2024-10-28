@@ -23,9 +23,10 @@ class _EditPageState extends State<EditPage> {
           if (state is SavedState) {
             
             // return to profile page
-            Navigator.push(
+            Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => ProfilePage(user: state.user))
+              MaterialPageRoute(builder: (context) => ProfilePage(user: state.user)),
+              (route) => false,
             );
           }
         },

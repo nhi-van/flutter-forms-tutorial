@@ -35,13 +35,11 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: ()  {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => EditPage(user: widget.user)),
-          ).then((value) {
-              setState(() {});
-          });
+          );
         },
         tooltip: 'Edit Profile Information',
         child: const Icon(Icons.edit),
