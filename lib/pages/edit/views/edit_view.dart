@@ -24,6 +24,7 @@ class _EditPageViewState extends State<EditPageView> {
     _lastNameController.dispose();
     super.dispose();
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,10 @@ class _EditPageViewState extends State<EditPageView> {
     User userModified = widget.user.duplicate();
     _firstNameController.text = widget.user.firstName;
     _lastNameController.text = widget.user.lastName;
-
+    List<bool> checked = [];
+    userModified.pronouns.forEach((p, value) => 
+      checked.add(false)
+    );
     // init state. if changed, load loadedState
     return Scaffold(
       appBar: AppBar(title: const Text("Edit Profile")),
@@ -116,7 +120,28 @@ class _EditPageViewState extends State<EditPageView> {
                         });
                       },
                     ),
-                  ),                                                                                    
+                  ),        
+                  Column(children: [
+                    for (var i = 0; i < checked.length; i += 1) 
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: checked[i],                            
+                            onChanged: (bool? value) {
+                              setState(() {
+                                checked[i] = value!;     
+                                userModified.pronouns.update(Pronouns.values[i], (val) => value);
+                                context.read<EditCubit>().onChanges(userModified);
+                              });
+                            },
+                            activeColor: Color(0xFF6200EE),
+                          ),
+                          Text(
+                            Pronouns.values[i].pronounLabel
+                          ),
+                        ]
+                      )
+                  ],),
                   // Save Button
                   ElevatedButton(
                     onPressed: () {

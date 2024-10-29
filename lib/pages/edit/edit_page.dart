@@ -34,7 +34,9 @@ class _EditPageState extends State<EditPage> {
           switch (state) {
             case EditErrorState():
             case EditLoadedState():
+            {
               return EditPageView(user: (state as EditLoadedState).user);
+            }              
             case EditInitialState():
             default:
               return EditPageView(user: widget.user);

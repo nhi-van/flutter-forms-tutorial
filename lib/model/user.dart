@@ -1,20 +1,40 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 enum UniversityStatus { student, professor, staff}
+enum Pronouns { she, he, they }
+
+extension PronounsExtension on Pronouns {
+  String get pronounLabel {
+    switch (this) {
+      case Pronouns.she:
+        return 'she/her';
+      case Pronouns.he:
+        return 'he/him';
+      default:
+        return 'they/them';
+    }
+  }
+}
 
 class User {
   String firstName;
   String lastName;
   String email;
   UniversityStatus universityStatus;
+  Map<Pronouns, bool> pronouns; 
 
   User({
     required this.firstName,
     required this.lastName,
     required this.email,
     required this.universityStatus,
-  });
+    Map<Pronouns, bool>? pronouns,
+    }): pronouns = {for (var p in Pronouns.values)
+            p: false};
+  
 
   static User empty(){
     return User(
@@ -42,12 +62,16 @@ class User {
     String? lastName,
     String? email,
     UniversityStatus? universityStatus,
+    Map<Pronouns, bool>? pronouns,
   }) {
+    Map<Pronouns, bool> pronouns2 = pronouns != null ? Map.from(pronouns) : Map.from(this.pronouns);
+
     return User(
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       email: email ?? this.email,
       universityStatus: universityStatus  ?? this.universityStatus,
+      pronouns: pronouns ?? pronouns2,
     );
   }
 
@@ -57,6 +81,7 @@ class User {
       'lastName': lastName,
       'email': email,
       'universityStatus': universityStatus.toString(),
+      'pronouns': pronouns.toString(),
     };
   }
 
@@ -66,6 +91,7 @@ class User {
       lastName: map['lastName'] as String,
       email: map['email'] as String,
       universityStatus: map['universityStatus'],
+      pronouns: map['pronouns'],
     );
   }
 
@@ -75,7 +101,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(firstName: $firstName, lastName: $lastName, email: $email, university status: $universityStatus)';
+    return 'User(firstName: $firstName, lastName: $lastName, email: $email, university status: $universityStatus, \n pronouns: $pronouns)';
   }
 
   @override
@@ -86,7 +112,8 @@ class User {
       other.firstName == firstName &&
       other.lastName == lastName &&
       other.email == email &&
-      other.universityStatus == universityStatus;
+      other.universityStatus == universityStatus &&
+      mapEquals(other.pronouns, pronouns);
   }
 
 }

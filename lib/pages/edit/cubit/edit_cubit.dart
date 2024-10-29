@@ -10,9 +10,8 @@ class EditCubit extends Cubit<EditState> {
   void init() async {
   }
 
-  void onChanges(User user){
-    User userModified = user.duplicate();
-    emit(EditLoadedState(userModified));
+  void onChanges(User user){   
+    emit(EditLoadedState(user));
   }
 
   void saveChanges(User user) {
