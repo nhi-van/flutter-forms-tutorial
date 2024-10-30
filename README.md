@@ -20,7 +20,7 @@ We see the use and application of forms in our everyday lives. Applying for an i
 
 From this example, we can see how a company or anyone could benefit from the use of forms since it provides a structured and organized way to retrieve user data in a way that fit requirements, updates user interface and processes it for some final destination. 
 
-Flutter offers a widget, called the “Form widget”, which allows us to build forms or add functionality in our app that works like a form. For our presentation, we will be going over the general components starting with the Textfield, radio button, checkbox, and dropdown.  
+Flutter offers a widget, called the “Forms" widget, which allows us to build forms or add functionality in our app that works like a form. For our presentation, we will be going over the general components of Flutter's "Forms" widget and how to build them: TextFormField, Radio, Checkbox, and DropdownButton.  
 
 ## General Parts of a Form
 - OnChanged
