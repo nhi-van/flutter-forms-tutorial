@@ -135,7 +135,7 @@ The radio is selected when `groupValue` and `value` match.
 
 This Flutter code implements a dropdown menu that allows users to select their academic major from a predefined list of options. 
 
-#### 1. `DropdownMenu<String>`
+1. **DropdownMenu<String>**: 
 
 This is the main widget, which initializes a dropdown menu that uses a generic type `String`. Here, the dropdown menu displays a list of strings representing various "majors."
 
@@ -158,20 +158,20 @@ DropdownMenu<String>(
     ).toList(),
 ),
 ```
-1. **initialSelection**:
+2. **initialSelection**:
 The initialSelection property sets the initially selected value in the dropdown. This variable (_dropdownValue) is stored in the widget's state and can be updated when the user selects a new option.
 
-2. **label**:
+3. **label**:
 The label property provides a title or prompt for the dropdown menu. Here, the label is a Text widget that displays "Select Major" to indicate the purpose of the dropdown.
 
-3. **onSelected**:
+4. **onSelected**:
 The onSelected property defines a callback that triggers when a user selects an option from the dropdown.
 
 - Inside this callback, we check if the new value (newValue) is non-null.
 - The widget’s state (_dropdownValue) is updated to reflect the selected option.
 - Additionally, this example sets the user's major via a custom setMajor method and notifies the application of changes through the EditCubit.
 
-4. **dropdownMenuEntries**:
+5. **dropdownMenuEntries**:
 The dropdownMenuEntries property populates the dropdown with selectable items.
 
 - We map each string in a list called majors to a DropdownMenuEntry object.
