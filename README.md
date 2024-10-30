@@ -14,6 +14,11 @@ Introduction to Forms in Flutter, and how to use them.
   - [References](README.md#other-references)
 
 ## Introduction 
+We see the use and application of forms in our everyday lives. Applying for an internship or job online is an example of a form in which it has text fields for you name, email, phone number, university, location, etc. These job apps also rely of radio button, checkboxes, drop-down, and validations in order to capture and process your information for the position.
+
+From this example, we can see how a company or anyone could benefit from the use of forms since it provides a structured and organized way to retrieve user data in a way that fit requirements, updates user interface and processes it for some final destination. 
+
+Flutter offers a widget, called the “Form widget”, which allows us to build forms or add functionality in our app that works like a form. For our presentation, we will be going over the general components starting with the Textfield, radio button, checkbox, and dropdown.  
 
 ## General Parts of a Form
 - OnChanged
