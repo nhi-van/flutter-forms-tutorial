@@ -3,6 +3,20 @@ import 'dart:convert';
 
 enum UniversityStatus { student, professor, staff}
 
+extension UniversityStatusExtension on UniversityStatus {
+  String get getStatus {
+    switch (this) {
+      case UniversityStatus.professor:
+        return 'Professor';
+      case UniversityStatus.staff:
+        return 'Staff';
+      case UniversityStatus.student:        
+      default:
+        return 'Student';
+    }
+  }
+}
+
 class User {
   String firstName;
   String lastName;

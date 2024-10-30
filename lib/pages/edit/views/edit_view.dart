@@ -146,7 +146,7 @@ class _EditPageViewState extends State<EditPageView> {
 
                   const SizedBox(height: 15),
                   ListTile(
-                    title: const Text('Student'),
+                    title: Text(UniversityStatus.student.getStatus),
                     leading: Radio<UniversityStatus>(
                       value: UniversityStatus.student,
                       groupValue: userModified.universityStatus,
@@ -159,7 +159,7 @@ class _EditPageViewState extends State<EditPageView> {
                     ),
                   ),
                   ListTile(
-                    title: const Text('Professor'),
+                    title: Text(UniversityStatus.professor.getStatus),
                     leading: Radio<UniversityStatus>(
                       value: UniversityStatus.professor,
                       groupValue: userModified.universityStatus,
@@ -172,7 +172,7 @@ class _EditPageViewState extends State<EditPageView> {
                     ),
                   ),
                   ListTile(
-                    title: const Text('Staff'),
+                    title: Text(UniversityStatus.staff.getStatus),
                     leading: Radio<UniversityStatus>(
                       value: UniversityStatus.staff,
                       groupValue: userModified.universityStatus,
