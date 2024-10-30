@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
       firstName: 'John', 
       lastName: 'Wick', 
       email: 'email', 
-      universityStatus: UniversityStatus.student
+      universityStatus: UniversityStatus.student,
+      major: 'Math',
+      gpa: 4.0,
     );
     
     return MaterialApp(
