@@ -133,6 +133,79 @@ The radio is selected when `groupValue` and `value` match.
 
 ### DropdownButton
 
+This Flutter code implements a dropdown menu that allows users to select their academic major from a predefined list of options. 
+
+#### 1. `DropdownMenu<String>`
+
+This is the main widget, which initializes a dropdown menu that uses a generic type `String`. Here, the dropdown menu displays a list of strings representing various "majors."
+
+```dart
+DropdownMenu<String>(
+    initialSelection: _dropdownValue,
+    //requestFocusOnTap: true,
+    label: const Text('Select Major'),
+    onSelected: (String? newValue) {
+        if (newValue != null) {
+        setState(() {
+            _dropdownValue = newValue;
+            userModified.setMajor(newValue);
+            context.read<EditCubit>().onChanges(userModified);
+        });
+        }
+    },
+    dropdownMenuEntries: majors.map<DropdownMenuEntry<String>>(
+        ...
+    ).toList(),
+),
+```
+1. **initialSelection**:
+The initialSelection property sets the initially selected value in the dropdown. This variable (_dropdownValue) is stored in the widget's state and can be updated when the user selects a new option.
+
+2. **label**:
+The label property provides a title or prompt for the dropdown menu. Here, the label is a Text widget that displays "Select Major" to indicate the purpose of the dropdown.
+
+3. **onSelected**:
+The onSelected property defines a callback that triggers when a user selects an option from the dropdown.
+
+- Inside this callback, we check if the new value (newValue) is non-null.
+- The widget’s state (_dropdownValue) is updated to reflect the selected option.
+- Additionally, this example sets the user's major via a custom setMajor method and notifies the application of changes through the EditCubit.
+
+4. **dropdownMenuEntries**:
+The dropdownMenuEntries property populates the dropdown with selectable items.
+
+- We map each string in a list called majors to a DropdownMenuEntry object.
+- Each entry is assigned a value and label, both of which are set to the major's name.
+- Additionally, each item can be customized with various properties, such as enabled (to control availability) and style (for setting color and appearance).
+
+```dart
+dropdownMenuEntries: majors.map<DropdownMenuEntry<String>>(
+  (String major) {
+    return DropdownMenuEntry<String>(
+      value: major,
+      label: major,
+      enabled: true,
+      style: MenuItemButton.styleFrom(
+        foregroundColor: Colors.black,
+      ),
+    );
+  },
+).toList(),
+```
+1. **Mapping the Majors List**:
+   - `majors.map<DropdownMenuEntry<String>>((String major) {...})` takes each `String` item (each major) from the `majors` list and creates a `DropdownMenuEntry<String>` for it.
+   - Inside the `map` function, each `major` is converted into a `DropdownMenuEntry<String>` object with properties to customize its appearance and behavior in the dropdown menu.
+
+2. **Creating a DropdownMenuEntry for Each Major**:
+   - `DropdownMenuEntry<String>` is created for each item in the `majors` list with the following properties:
+     - **value**: This is the actual value represented by the item in the dropdown. Here, it’s set to the major's name (`value: major`).
+     - **label**: This is the text that will be shown for each item in the dropdown menu. It’s also set to the major's name (`label: major`).
+     - **enabled**: This property controls whether the item is selectable. Here, it’s set to `true`, making all options selectable by default.
+     - **style**: Defines the style for the dropdown item. In this example, `MenuItemButton.styleFrom(foregroundColor: Colors.black)` sets the text color of each item to black. You can modify the `foregroundColor` to change how each item’s text color appears.
+
+3. **Converting the Mapped List to List Type**:
+   - The `map` function generates an iterable, so calling `.toList()` converts this into a standard list of `DropdownMenuEntry<String>` items. This list is then assigned to `dropdownMenuEntries`, populating the dropdown menu with options.
+
 ### Working with Multiple Forms
 
 ## Other References
