@@ -8,12 +8,16 @@ class User {
   String lastName;
   String email;
   UniversityStatus universityStatus;
+  String major;
+  double gpa;
 
   User({
     required this.firstName,
     required this.lastName,
     required this.email,
     required this.universityStatus,
+    required this.major,
+    required this.gpa,
   });
 
   static User empty(){
@@ -22,6 +26,8 @@ class User {
       lastName: '',
       email: '',
       universityStatus: UniversityStatus.student,
+      major: '',
+      gpa: 4.0,
     );
   }
 
@@ -37,17 +43,30 @@ class User {
     universityStatus = status;
   }
 
+  setMajor(String major){
+    this.major = major;
+  }
+
+  setGPA(double gpa){
+    this.gpa = gpa;
+  }
+
+
   User duplicate({
     String? firstName,
     String? lastName,
     String? email,
     UniversityStatus? universityStatus,
+    String? major,
+    double? gpa,
   }) {
     return User(
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       email: email ?? this.email,
       universityStatus: universityStatus  ?? this.universityStatus,
+      major: major ?? this.major,
+      gpa: gpa ?? this.gpa,
     );
   }
 
@@ -57,6 +76,8 @@ class User {
       'lastName': lastName,
       'email': email,
       'universityStatus': universityStatus.toString(),
+      'major': major,
+      'gpa': gpa,
     };
   }
 
@@ -66,6 +87,8 @@ class User {
       lastName: map['lastName'] as String,
       email: map['email'] as String,
       universityStatus: map['universityStatus'],
+      major: map['major'],
+      gpa: map['gpa'],
     );
   }
 
@@ -75,7 +98,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(firstName: $firstName, lastName: $lastName, email: $email, university status: $universityStatus)';
+    return 'User(firstName: $firstName, lastName: $lastName, email: $email, university status: $universityStatus, major: $major, gpa: $gpa)';
   }
 
   @override
@@ -86,7 +109,9 @@ class User {
       other.firstName == firstName &&
       other.lastName == lastName &&
       other.email == email &&
-      other.universityStatus == universityStatus;
+      other.universityStatus == universityStatus &&
+      other.major == major &&
+      other.gpa == gpa;
   }
 
 }
