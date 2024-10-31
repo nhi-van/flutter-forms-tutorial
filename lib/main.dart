@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     User user = User(
       firstName: 'John', 
       lastName: 'Wick', 
-      email: 'email', 
+      email: 'jwick@scu.edu', 
       universityStatus: UniversityStatus.student,
       major: 'Math',
       gpa: 4.0,
