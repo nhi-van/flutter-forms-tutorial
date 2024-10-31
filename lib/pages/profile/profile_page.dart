@@ -34,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ProfileField(label: "First Name", value: widget.user.firstName),
             ProfileField(label: "Last Name", value: widget.user.lastName),
             ProfileField(label: "Email", value: widget.user.email),
-            ProfileField(label: "University Status", value: widget.user.universityStatus.toString()),
+            ProfileField(label: "University Status", value: widget.user.universityStatus.getStatus),
             ProfileField(label: "Major", value: widget.user.major),
             ProfileField(label: "GPA", value: widget.user.gpa.toStringAsFixed(2)),
           ],

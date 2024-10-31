@@ -243,7 +243,9 @@ class _EditPageViewState extends State<EditPageView> {
                     child: const Text('Save'),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     child: const Text('Cancel'),
                   ),
                 ],
