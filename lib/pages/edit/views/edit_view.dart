@@ -79,46 +79,65 @@ class _EditPageViewState extends State<EditPageView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text(userModified.toString()),
+            // Text(userModified.toString()),
             Form(
               key: _formKey,
               child: Column(
                 children: [
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      icon: Icon(Icons.person),
-                      labelText: 'First Name *',
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: SizedBox(
+                      width: 350, 
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          icon: Padding(
+                            padding: EdgeInsets.only(left: 15.0),
+                            child: Icon(Icons.person),
+                          ),
+                          labelText: 'First Name *',
+                        ),
+                        controller: _firstNameController,
+                        validator: (value) {
+                          return (value != null && value.isEmpty) ? 'Please type your name' : null;
+                        },
+                        onChanged: (value) {
+                          userModified.setFirstName(value.toString());
+                          context.read<EditCubit>().onChanges(userModified);
+                        },
+                        onSaved: (value) {
+                          userModified.setFirstName(value.toString());
+                        },
+                      ),
                     ),
-                    controller: _firstNameController,
-                    validator: (value) {
-                      return (value != null && value.isEmpty) ? 'Please type your name' : null;
-                    },
-                    onChanged: (value) {
-                      userModified.setFirstName(value.toString());
-                      context.read<EditCubit>().onChanges(userModified);
-                    },
-                    onSaved: (value) {
-                      userModified.setFirstName(value.toString());
-                    },
                   ),
                   const SizedBox(height: 15),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      icon: Icon(Icons.person),
-                      labelText: 'Last Name *',
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: SizedBox(
+                      width: 350, 
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          icon: Padding(
+                            padding: EdgeInsets.only(left: 15.0),
+                            child: Icon(Icons.person),
+                          ),
+                          labelText: 'Last Name *',
+                        ),
+                        controller: _lastNameController,
+                        validator: (value) {
+                          return (value != null && value.isEmpty) ? 'Please type your last name' : null;
+                        },
+                        onChanged: (value) {
+                          userModified.setLastName(value.toString());
+                          context.read<EditCubit>().onChanges(userModified);
+                        },
+                        onSaved: (value) {
+                          userModified.setLastName(value.toString());
+                        },
+                      ),
                     ),
-                    controller: _lastNameController,
-                    validator: (value) {
-                      return (value != null && value.isEmpty) ? 'Please type your last name' : null;
-                    },
-                    onChanged: (value) {
-                      userModified.setLastName(value.toString());
-                      context.read<EditCubit>().onChanges(userModified);
-                    },
-                    onSaved: (value) {
-                      userModified.setLastName(value.toString());
-                    },
                   ),
+                  
                   const SizedBox(height: 20),
                   Container(
                     width: 200, // Adjust the width as needed
@@ -213,11 +232,6 @@ class _EditPageViewState extends State<EditPageView> {
                     ).toList(),
                   ),
                   const SizedBox(height: 20),
-
-
-                  
-                  
-
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
