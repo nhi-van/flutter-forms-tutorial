@@ -11,6 +11,15 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  late User currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize currentUser with widget.user's values
+    currentUser = widget.user;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,30 +31,54 @@ class _ProfilePageState extends State<ProfilePage> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: <Widget>[
-            const Text(
-              'User Information',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+            const Center(
+              child: Text(
+                'User Information',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-            ProfileField(label: "First Name", value: widget.user.firstName),
-            ProfileField(label: "Last Name", value: widget.user.lastName),
-            ProfileField(label: "Email", value: widget.user.email),
-            ProfileField(label: "University Status", value: widget.user.universityStatus.getStatus),
-            ProfileField(label: "Major", value: widget.user.major),
-            ProfileField(label: "GPA", value: widget.user.gpa.toStringAsFixed(2)),
+            Center(
+              child: Column(
+                children: [
+                  ProfileField(label: "First Name", value: currentUser.firstName),
+                  const Divider(),
+                  ProfileField(label: "Last Name", value: currentUser.lastName),
+                  const Divider(),
+                  ProfileField(label: "Email", value: currentUser.email),
+                  const Divider(),
+                  ProfileField(label: "University Status", value: currentUser.universityStatus.getStatus),
+                  const Divider(),
+                  ProfileField(label: "Major", value: currentUser.major),
+                  const Divider(),
+                  ProfileField(label: "GPA", value: currentUser.gpa.toStringAsFixed(2)),
+                  const Divider(),
+                  ProfileField(label: "Vegetarian", value: currentUser.isVegetarian ? "Yes" : "No"),
+                  const Divider(),
+                  ProfileField(label: "Vegan", value: currentUser.isVegan ? "Yes" : "No"),
+                  const Divider(),
+                  ProfileField(label: "Gluten-Free", value: currentUser.isGlutenFree ? "Yes" : "No"),
+                ],
+              ),
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          // Wait for the updated user after editing
+          final updatedUser = await Navigator.push<User>(
             context,
-            MaterialPageRoute(builder: (context) => EditPage(user: widget.user)),
+            MaterialPageRoute(builder: (context) => EditPage(user: currentUser)),
           );
+          if (updatedUser != null) {
+            setState(() {
+              currentUser = updatedUser; // Update currentUser with the modified user data
+            });
+          }
         },
         tooltip: 'Edit Profile Information',
         child: const Icon(Icons.edit),
@@ -70,10 +103,10 @@ class ProfileField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            label,
+            "$label: ",
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,

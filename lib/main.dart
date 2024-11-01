@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Initialize the User with dietary restrictions
     User user = User(
       firstName: 'John', 
       lastName: 'Wick', 
@@ -18,12 +19,14 @@ class MyApp extends StatelessWidget {
       universityStatus: UniversityStatus.student,
       major: 'Math',
       gpa: 4.0,
+      isVegetarian: true,      
+      isVegan: true,
+      isGlutenFree: true,
     );
     
     return MaterialApp(
       title: 'User Profile',
       theme: ThemeData(
- 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),

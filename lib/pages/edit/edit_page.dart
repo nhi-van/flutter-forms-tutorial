@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:forms_tutorial/model/user.dart';
 import 'package:forms_tutorial/pages/edit/cubit/edit_cubit.dart';
 import 'package:forms_tutorial/pages/edit/views/edit_view.dart';
-import 'package:forms_tutorial/pages/profile/profile_page.dart';
 
 class EditPage extends StatefulWidget {
   final User user;
@@ -21,13 +20,8 @@ class _EditPageState extends State<EditPage> {
       child: BlocConsumer<EditCubit, EditState>(
         listener: (context, state) {
           if (state is SavedState) {
-            
-            // return to profile page
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => ProfilePage(user: state.user)),
-              (route) => false,
-            );
+            // Return the updated user to ProfilePage
+            Navigator.pop(context, state.user);
           }
         },
         builder: (context, state) {
@@ -38,9 +32,9 @@ class _EditPageState extends State<EditPage> {
             case EditInitialState():
             default:
               return EditPageView(user: widget.user);
-        }
-        }
-      )
+          }
+        },
+      ),
     );
   }
 }
