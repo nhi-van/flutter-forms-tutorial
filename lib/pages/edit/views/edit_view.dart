@@ -257,35 +257,38 @@ class _EditPageViewState extends State<EditPageView> {
                     ),
                   ),
                   CheckboxListTile(
-                    title: const Text("Vegetarian"),
-                    value: _isVegetarian,
-                    onChanged: (value) {
-                      setState(() {
-                        _isVegetarian = value!;
-                        userModified.setisVegetarian;
-                      });
-                    },
-                  ),
-                  CheckboxListTile(
-                    title: const Text("Vegan"),
-                    value: _isVegan,
-                    onChanged: (value) {
-                      setState(() {
-                        _isVegan = value!;
-                        userModified.setisVegan;
-                      });
-                    },
-                  ),
-                  CheckboxListTile(
-                    title: const Text("Gluten-Free"),
-                    value: _isGlutenFree,
-                    onChanged: (value) {
-                      setState(() {
-                        _isGlutenFree = value!;
-                        userModified.setisGlutenFree;
-                      });
-                    },
-                  ),
+  title: const Text("Vegetarian"),
+  value: _isVegetarian,
+  onChanged: (value) {
+    setState(() {
+      _isVegetarian = value!;
+      userModified.setisVegetarian(value); // Pass value to the setter
+      context.read<EditCubit>().onChanges(userModified);
+    });
+  },
+),
+CheckboxListTile(
+  title: const Text("Vegan"),
+  value: _isVegan,
+  onChanged: (value) {
+    setState(() {
+      _isVegan = value!;
+      userModified.setisVegan(value); // Pass value to the setter
+      context.read<EditCubit>().onChanges(userModified);
+    });
+  },
+),
+CheckboxListTile(
+  title: const Text("Gluten-Free"),
+  value: _isGlutenFree,
+  onChanged: (value) {
+    setState(() {
+      _isGlutenFree = value!;
+      userModified.setisGlutenFree(value); // Pass value to the setter
+      context.read<EditCubit>().onChanges(userModified);
+    });
+  },
+),
 
                   // Save and Cancel Buttons
                   ElevatedButton(

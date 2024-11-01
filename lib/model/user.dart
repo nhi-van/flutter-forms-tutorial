@@ -56,15 +56,17 @@ class User {
   setFirstName(String firstName) {
     this.firstName = firstName;
   }
-setisVegetarian(String firstName) {
-    this.isVegetarian = isVegetarian;
-  }
-  setisVegan(String firstName) {
-    this.isVegan = isVegan;
-  }
-setisGlutenFree(String firstName) {
-    this.isGlutenFree = isGlutenFree;
-  }
+void setisVegetarian(bool isVegetarian) {
+  this.isVegetarian = isVegetarian;
+}
+
+void setisVegan(bool isVegan) {
+  this.isVegan = isVegan;
+}
+
+void setisGlutenFree(bool isGlutenFree) {
+  this.isGlutenFree = isGlutenFree;
+}
 
 
   setLastName(String lastName) {
