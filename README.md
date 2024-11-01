@@ -212,6 +212,8 @@ ElevatedButton(
 
 With this setup, checkboxes allow users to select dietary preferences, with each selection saved in the form. This approach is useful for any form where multiple non-exclusive selections are needed.
 
+However, a **better way to implement checkboxes** would be using Using a `Map<String, bool>` for checkboxes lets you manage each checkbox label and its checked state in a single structure, making it easier to render and update them. Instead of creating separate variables, you define the checkboxes as key-value pairs (e.g., `{ "Vegetarian": false, "Vegan": false }`). In your `build` method, you loop through the map keys to dynamically create `CheckboxListTile` widgets. When a checkbox state changes, you update the corresponding map entry, and you can save all checkbox values at once by accessing the map directly. This approach is cleaner, easier to scale, and simplifies managing checkbox states.
+
 ### DropdownButton
 
 This Flutter code implements a dropdown menu that allows users to select their academic major from a predefined list of options.
